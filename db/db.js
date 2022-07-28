@@ -5,3 +5,11 @@ const connection = mysql.createConnection({
     password: '',
     database: 'company'
 });
+
+const db = {
+    viewDept: function () {
+        return connection.promise().query(
+            'SELECT * FROM `department`'
+        );
+    }
+}
