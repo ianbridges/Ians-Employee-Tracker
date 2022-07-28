@@ -1,8 +1,11 @@
+/* File Linking and Dependencies Start */
 const db = require('./db/db.js');
 const ascii_text_generator = require('ascii-text-generator')
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+/* File linking and Dependencies End */
 
+/* Questions Array Start */
 const intialQuestions = {
     type: 'list',
     name: 'chooseNext',
@@ -18,7 +21,9 @@ const intialQuestions = {
         'Exit'
     ]
 };
+/* Questions Array End */
 
+/* Choices Loop Start */
 function askChoice() {
     inquirer.prompt(intialQuestions)
         .then((answers) => {
@@ -50,9 +55,9 @@ function askChoice() {
             }
         })
 };
+/* Choices Loop End */
 
-
-/* */
+/* Add Department Question and Function Start */
 const addDepartmentQuestion = {
     type: 'input',
     name: 'deptName',
@@ -66,9 +71,9 @@ function askNewDept() {
         })
     })
 };
-/* */
+/* Add Department Question and Function End */
 
-/* */
+/* Add Role Question and Function Start */
 const newRoleQuestions = [
     {
         type: 'input',
@@ -94,9 +99,9 @@ function askNewRole() {
         })
     })
 };
-/* */
+/* Add Role Question and Function End */
 
-/* */
+/* Add Employee Question and Function Start */
 const newEmployeeQuestions = [
     {
         type: 'input',
@@ -127,9 +132,9 @@ function addNewEmployee() {
         })
     })
 };
-/* */
+/* Add Employee Question and Function End */
 
-/* */
+/* Update Employee's role Question and Function Start */
 function updateRoleQuestion(employees, roles) {
     return [
         {
@@ -170,12 +175,14 @@ function updateEmployeeRole() {
         })
     })
 };
-/* */
+/* Update Employee's role Question and Function End */
 
+/* Function to Start Application */
 function init() {
     let text = "/*\n" + ascii_text_generator("Ians Employee Tracker", "2") + "\n*/";
     console.log(text);
     askChoice();
 };
 
+/* init Function Call */
 init();

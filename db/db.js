@@ -1,11 +1,14 @@
+/* Dependencies and Packages */
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'F692jKsg6B!bYkl',
+    password: '',
     database: 'company'
 });
 
+
+/* Data Query Functions */
 const db = {
     viewDept: function () {
         return connection.promise().query(
