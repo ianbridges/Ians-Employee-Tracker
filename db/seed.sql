@@ -20,4 +20,3 @@ INSERT INTO employee
   ('Hugh', 'Wilson', 2, 0),
   ('Emily', 'Horn', 3, 1),
   ('Will', 'Dingle', 4, 0);
-  
