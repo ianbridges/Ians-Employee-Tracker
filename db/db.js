@@ -27,6 +27,11 @@ const db = {
             'INSERT INTO department (`name`) values ( "' + deptName + '" )'
         );
     },
+    addRole: function(roleName, deptID, salary){
+        return connection.promise().query(
+            'INSERT INTO `role` (title, salary, department_id) values ("' + roleName + '" ,  ' + salary + ' ,  ' + deptID + ' )'
+        );
+    },
     
 };
 

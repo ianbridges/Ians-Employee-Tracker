@@ -39,6 +39,8 @@ function askChoice() {
                 })
             } else if (answers.chooseNext === 'add a department') {
                 askNewDept();
+            } else if (answers.chooseNext === 'add a new role') {
+                askNewRole();
             }
         })
 };
@@ -60,6 +62,33 @@ function askNewDept() {
 };
 /* */
 
+/* */
+const newRoleQuestions = [
+    {
+        type: 'input',
+        name: 'roleName',
+        message: 'Name of the new role?'
+    },
+    {
+        type: 'input',
+        name: 'deptID',
+        message: 'Department id of the new role?'
+    },
+    {
+        type: 'input',
+        name: 'salary',
+        message: 'Salary of the new role?'
+    }
+];
+
+function askNewRole() {
+    inquirer.prompt(newRoleQuestions).then(answers => {
+        db.addRole(answers.roleName, answers.deptID, answers.salary).then(data => {
+            askChoice();
+        })
+    })
+};
+/* */
 
 function init() {
     //    let text ="/*\n" + ascii_text_generator("Ian's Employee Tracker","2") + "\n*/";
