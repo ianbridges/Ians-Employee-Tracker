@@ -22,6 +22,11 @@ const db = {
             'SELECT * FROM `employee` join `role` on employee.role_id = `role`.id join department on role.department_id = department.id'
         );
     },
+    addDept: function(deptName) {
+        return connection.promise().query(
+            'INSERT INTO department (`name`) values ( "' + deptName + '" )'
+        );
+    },
     
 };
 

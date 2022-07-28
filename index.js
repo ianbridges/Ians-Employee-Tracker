@@ -37,9 +37,29 @@ function askChoice() {
                     console.table(data[0]);
                     askChoice();
                 })
+            } else if (answers.chooseNext === 'add a department') {
+                askNewDept();
             }
         })
 };
+
+
+/* */
+const addDepartmentQuestion = {
+    type: 'input',
+    name: 'deptName',
+    message: 'Name of the new department?'
+};
+
+function askNewDept() {
+    inquirer.prompt(addDepartmentQuestion).then(answers => {
+        db.addDept(answers.deptName).then(data => {
+            askChoice();
+        })
+    })
+};
+/* */
+
 
 function init() {
     //    let text ="/*\n" + ascii_text_generator("Ian's Employee Tracker","2") + "\n*/";
