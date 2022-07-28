@@ -17,6 +17,11 @@ const db = {
             'SELECT * FROM `role`'
         );
     },
+    viewEmployee: function () {
+        return connection.promise().query(
+            'SELECT * FROM `employee` join `role` on employee.role_id = `role`.id join department on role.department_id = department.id'
+        );
+    },
     
 };
 

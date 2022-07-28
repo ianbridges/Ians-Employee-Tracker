@@ -32,6 +32,11 @@ function askChoice() {
                     console.table(data[0]);
                     askChoice();
                 })
+            } else if (answers.chooseNext === 'view all employees') {
+                db.viewEmployee().then(data => {
+                    console.table(data[0]);
+                    askChoice();
+                })
             }
         })
 };
