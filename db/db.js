@@ -11,7 +11,13 @@ const db = {
         return connection.promise().query(
             'SELECT * FROM `department`'
         );
-    }
-}
+    },
+    viewRole: function () {
+        return connection.promise().query(
+            'SELECT * FROM `role`'
+        );
+    },
+    
+};
 
 module.exports = db

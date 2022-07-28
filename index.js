@@ -27,13 +27,18 @@ function askChoice() {
                     console.table(data[0]);
                     askChoice();
                 })
+            } else if (answers.chooseNext === 'view all roles') {
+                db.viewRole().then(data => {
+                    console.table(data[0]);
+                    askChoice();
+                })
             }
         })
 };
 
 function init() {
-//    let text ="/*\n" + ascii_text_generator("Ian's Employee Tracker","2") + "\n*/";
-//    console.log(text);
+    //    let text ="/*\n" + ascii_text_generator("Ian's Employee Tracker","2") + "\n*/";
+    //    console.log(text);
     askChoice();
 };
 
