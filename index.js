@@ -41,6 +41,8 @@ function askChoice() {
                 askNewDept();
             } else if (answers.chooseNext === 'add a new role') {
                 askNewRole();
+            } else if (answers.chooseNext === 'add an employee') {
+                addNewEmployee();
             }
         })
 };
@@ -88,6 +90,39 @@ function askNewRole() {
         })
     })
 };
+/* */
+
+/* */
+const newEmployeeQuestions = [
+    {
+        type: 'input',
+        name: 'firstName',
+        message: 'First name of the new employee?'
+    },
+    {
+        type: 'input',
+        name: 'lastName',
+        message: 'Last name of the new employee?'
+    },
+    {
+        type: 'input',
+        name: 'role',
+        message: 'Role of the new employee?'
+    },
+    {
+        type: 'input',
+        name: 'manager',
+        message: 'Manager id of the new employee?'
+    }
+]
+
+function addNewEmployee() {
+    inquirer.prompt(newEmployeeQuestions).then(answers => {
+        db.addEmployee(answers.firstName, answers.lastName, answers.role, answers.manager).then(data => {
+            askChoice();
+        })
+    })
+}
 /* */
 
 function init() {
