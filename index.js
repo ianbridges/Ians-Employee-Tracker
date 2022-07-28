@@ -1,12 +1,12 @@
 const db = require('./db/db.js');
-//let ascii_text_generator = require('ascii-text-generator');
+const ascii_text_generator = require('ascii-text-generator')
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 
 const intialQuestions = {
     type: 'list',
     name: 'chooseNext',
-    message: "Choose What you would liike to do.",
+    message: "Choose What you would like to do.",
     choices: [
         'view all departments',
         'view all roles',
@@ -45,7 +45,9 @@ function askChoice() {
                 addNewEmployee();
             } else if (answers.chooseNext === 'update an employee role') {
                 updateEmployeeRole();
-            } 
+            } else if (answers.chooseNext === 'Exit') {
+                process.exit();
+            }
         })
 };
 
@@ -128,8 +130,8 @@ function addNewEmployee() {
 /* */
 
 /* */
-function updateRoleQuestion(employee, roles) {
-    return[
+function updateRoleQuestion(employees, roles) {
+    return [
         {
             type: 'list',
             name: 'employee',
@@ -139,8 +141,8 @@ function updateRoleQuestion(employee, roles) {
         {
             type: 'list',
             name: 'role',
-            message: "What is the new employee's role id",
-            choice: roles
+            message: 'What is the new employee\'s role id?',
+            choices: roles
         }
     ]
 };
@@ -171,8 +173,8 @@ function updateEmployeeRole() {
 /* */
 
 function init() {
-    //    let text ="/*\n" + ascii_text_generator("Ian's Employee Tracker","2") + "\n*/";
-    //    console.log(text);
+    let text = "/*\n" + ascii_text_generator("Ians Employee Tracker", "2") + "\n*/";
+    console.log(text);
     askChoice();
 };
 
