@@ -43,7 +43,9 @@ function askChoice() {
                 askNewRole();
             } else if (answers.chooseNext === 'add an employee') {
                 addNewEmployee();
-            }
+            } else if (answers.chooseNext === 'update an employee role') {
+                updateEmployeeRole();
+            } 
         })
 };
 
@@ -107,14 +109,14 @@ const newEmployeeQuestions = [
     {
         type: 'input',
         name: 'role',
-        message: 'Role of the new employee?'
+        message: 'Role id of the new employee?'
     },
     {
         type: 'input',
         name: 'manager',
         message: 'Manager id of the new employee?'
     }
-]
+];
 
 function addNewEmployee() {
     inquirer.prompt(newEmployeeQuestions).then(answers => {
@@ -122,7 +124,50 @@ function addNewEmployee() {
             askChoice();
         })
     })
-}
+};
+/* */
+
+/* */
+function updateRoleQuestion(employee, roles) {
+    return[
+        {
+            type: 'list',
+            name: 'employee',
+            message: 'What employee do you want to update?',
+            choices: employees
+        },
+        {
+            type: 'list',
+            name: 'role',
+            message: "What is the new employee's role id",
+            choice: roles
+        }
+    ]
+};
+
+function updateEmployeeRole() {
+    db.viewEmployee().then(employeeData => {
+        var employeeNames = employeeData[0].map((employee) => {
+            return employee.first_name + ' ' + employee.last_name;
+        })
+        db.viewRole().then(roleData => {
+            var roleNames = roleData[0].map((role) => {
+                return role.title;
+            })
+            inquirer.prompt(updateRoleQuestion(employeeNames, roleNames)).then(answers => {
+                var employeeObj = employeeData[0].filter(emp => {
+                    return emp.first_name + ' ' + emp.last_name == answers.employee;
+                })
+                var roleObj = roleData[0].filter(role => {
+                    return role.title == answers.role;
+                })
+                db.updateEmployee(employeeObj[0].id, roleObj[0].id).then(() => {
+                    askChoice();
+                })
+            })
+        })
+    })
+};
 /* */
 
 function init() {

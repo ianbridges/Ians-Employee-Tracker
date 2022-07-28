@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'F692jKsg6B!bYkl',
+    password: '',
     database: 'company'
 });
 
@@ -37,6 +37,11 @@ const db = {
             'INSERT INTO `employee` (first_name, last_name, role_id, manager_id) values ("' + firstName + '" ,  "' + lastName + '" ,  ' + role_id + ' ,  ' + manager_id + ' )'
         );
     },
+    updateEmployee: function(employeeID, roleID) {
+        return connection.promise().query(
+            'UPDATE employee SET role_id = ' + roleID + ' WHERE id = ' + employeeID 
+        );
+    }
 };
 
 module.exports = db
